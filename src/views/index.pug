@@ -1,0 +1,89 @@
+doctype html
+html
+  head
+    title Poll Page
+    script(src="https://unpkg.com/react@17/umd/react.development.js")
+    script(src="https://unpkg.com/react-dom@17/umd/react-dom.development.js")
+    script(src="https://unpkg.com/@babel/standalone/babel.min.js")
+  body
+    #app
+    script(type="text/babel").
+      const App = () => {
+        const [phoneNumber, setPhoneNumber] = React.useState('');
+        const [selectedOption, setSelectedOption] = React.useState('');
+
+        const handleChange = (e) => {
+          setSelectedOption(e.target.value);
+        };
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          alert(`Phone Number: ${phoneNumber}, Selected Capital: ${selectedOption}`);
+        };
+
+        return (
+          <div>
+            <img id="logo" src="/images/majoritiLogo.png" alt="Majoriti Logo" style={{ width: 100px, height: auto }} />
+            <form onSubmit={handleSubmit}>
+              <div>
+                <h3>What is the capital of France?</h3>
+                <label>
+                  <input
+                    type="radio"
+                    name="capital"
+                    value="London"
+                    checked={selectedOption === "London"}
+                    onChange={handleChange}
+                  />
+                  London
+                </label>
+                <br />
+                <label>
+                  <input
+                    type="radio"
+                    name="capital"
+                    value="Berlin"
+                    checked={selectedOption === "Berlin"}
+                    onChange={handleChange}
+                  />
+                  Berlin
+                </label>
+                <br />
+                <label>
+                  <input
+                    type="radio"
+                    name="capital"
+                    value="Paris"
+                    checked={selectedOption === "Paris"}
+                    onChange={handleChange}
+                  />
+                  Paris
+                </label>
+                <br />
+                <label>
+                  <input
+                    type="radio"
+                    name="capital"
+                    value="Rome"
+                    checked={selectedOption === "Rome"}
+                    onChange={handleChange}
+                  />
+                  Rome
+                </label>
+              </div>
+              <br />
+              <input
+                type="tel"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                placeholder="Enter phone number"
+                required
+              />
+              <br />
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        );
+      };
+
+      ReactDOM.render(<App />, document.getElementById('app'));
